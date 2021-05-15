@@ -2,12 +2,12 @@
 pragma solidity ^0.8.4;
 
 contract SimpleLottery {
-    uint public constant TICKET_PRICE = 1e16; // 0.01 ether
+    uint256 public constant TICKET_PRICE = 1e16; // 0.01 ether
     address[] public tickets;
     address public winner;
-    uint public ticketingCloses;
+    uint256 public ticketingCloses;
 
-    constructor(uint duration) {
+    constructor(uint256 duration) {
         ticketingCloses = block.timestamp + duration;
     }
 
@@ -17,20 +17,18 @@ contract SimpleLottery {
         tickets.push(msg.sender);
     }
 
-    function drawWinner () public {
+    function drawWinner() public {
         require(block.timestamp > ticketingCloses + 5 minutes);
         require(winner == address(0));
-        bytes32 rand = keccak256(
-        block.blockhash(block.number-1)
-        );
-        winner = tickets[uint(rand) % tickets.length];
+        bytes32 rand = keccak256(abi.encode(block.number - 1));
+        winner = tickets[uint256(rand) % tickets.length];
     }
 
-    function withdraw () public {
+    function withdraw() public {
         require(msg.sender == winner);
-        msg.sender.transfer(this.balance);
+        payable(msg.sender).transfer(address(this).balance);
     }
-    
+
     fallback() external payable {
         buy();
     }
