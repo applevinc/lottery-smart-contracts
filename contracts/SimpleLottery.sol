@@ -13,13 +13,14 @@ contract SimpleLottery {
 
     function buy() public payable {
         require(msg.value == TICKET_PRICE);
-        require(block.timestamp < ticketingCloses);
+        assert(block.timestamp < ticketingCloses);
         tickets.push(msg.sender);
     }
 
     function drawWinner() public {
-        require(block.timestamp > ticketingCloses + 5 minutes);
+        assert(block.timestamp > ticketingCloses + 5 minutes);
         require(winner == address(0));
+        // generating a random value
         bytes32 rand = keccak256(abi.encode(block.number - 1));
         winner = tickets[uint256(rand) % tickets.length];
     }
@@ -29,9 +30,7 @@ contract SimpleLottery {
         payable(msg.sender).transfer(address(this).balance);
     }
 
-    fallback() external payable {
+    receive() external payable {
         buy();
     }
-
-    receive() external payable {}
 }
