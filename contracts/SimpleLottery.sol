@@ -12,7 +12,7 @@ contract SimpleLottery {
     }
 
     function buy() public payable {
-        require(msg.value == TICKET_PRICE);
+        require(msg.value >= TICKET_PRICE, "couldn't buy with that amount");
         assert(block.timestamp < ticketingCloses);
         tickets.push(msg.sender);
     }

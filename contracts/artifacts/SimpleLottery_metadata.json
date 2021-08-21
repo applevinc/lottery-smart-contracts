@@ -128,11 +128,11 @@
 	},
 	"sources": {
 		"contracts/SimpleLottery.sol": {
-			"keccak256": "0x81789322e76a0d1f5c608fcfe6090db4aa6c5c8b611d8c144fb356e7354631eb",
+			"keccak256": "0xea87a8107823fff4169306a74187dd62a278218e8c9597912fe972c7eaba9746",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://cafb53815d3f033bf4659dd705ce4b48269890823f9eb6213464783278e9eea2",
-				"dweb:/ipfs/QmTNMcKUbwjfCA9yjcjmkiUpyppHATeHr55tHz5yFRrMSF"
+				"bzz-raw://02bf09c11b313a776145c81174aa58666d50c6accdc70529b6190ac15834d32f",
+				"dweb:/ipfs/QmbCsmacSRXvPxEWiSVWGw3hPjqpRkcyzZRTHRmXTgAyow"
 			]
 		}
 	},
